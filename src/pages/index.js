@@ -1,5 +1,6 @@
 import Head from "next/head";
 import styles from "@/styles/Home.module.css";
+import TranscriptList from "../components/TranscriptList";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <h1>Welcome to the Karaoke App</h1>
+        <TranscriptList />
         {/* Add your karaoke app components here */}
       </main>
     </>
