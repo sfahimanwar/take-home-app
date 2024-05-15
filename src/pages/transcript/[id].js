@@ -4,6 +4,7 @@ import Transcript from '../../components/Transcript';
 import AudioPlayer from '../../components/AudioPlayer';
 import Link from 'next/link';
 import { useState } from 'react';
+import { Loader } from '@mantine/core';
 
 export default function TranscriptPage() {
   const router = useRouter();
@@ -11,7 +12,12 @@ export default function TranscriptPage() {
   const { data: transcript, isLoading, error } = useTranscriptById(id);
   const [currentTime, setCurrentTime] = useState(0);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return (
+    <div>
+      <p>Loading...</p>
+      <Loader />
+    </div>
+  );
   if (error) return <p>Error loading transcript</p>;
 
   return (
