@@ -1,19 +1,9 @@
-import { useTranscripts, useTranscriptById } from '../services/api';
-import { useState, useEffect } from 'react';
-import Transcript from './Transcript';
-import AudioPlayer from './AudioPlayer';
+import { useTranscripts } from '../services/api';
+import { useState } from 'react';
+import Link from 'next/link';
 
 const TranscriptList = () => {
   const { data, error, isLoading } = useTranscripts();
-  const [selectedTranscriptId, setSelectedTranscriptId] = useState(null);
-  const { data: transcriptData } = useTranscriptById(selectedTranscriptId);
-
-  useEffect(() => {
-    if (transcriptData) {
-      console.log('Transcript Data:', transcriptData);
-      console.log('Audio URL:', transcriptData.audio_url);
-    }
-  }, [transcriptData]);
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error fetching transcripts</div>;
@@ -22,17 +12,13 @@ const TranscriptList = () => {
     <div>
       <ul>
         {data.map((transcript) => (
-          <li key={transcript.id} onClick={() => setSelectedTranscriptId(transcript.id)}>
-            {transcript.name}
+          <li key={transcript.id}>
+            <Link href={`/transcript/${transcript.id}`}>
+              {transcript.name}
+            </Link>
           </li>
         ))}
       </ul>
-      {transcriptData && (
-        <>
-          <Transcript transcript={transcriptData} />
-          <AudioPlayer src={transcriptData.audio_url} />
-        </>
-      )}
     </div>
   );
 };
