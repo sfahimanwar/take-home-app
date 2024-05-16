@@ -19,8 +19,8 @@ const AudioPlayer = ({ src, onTimeUpdate }) => {
   }, []);
 
   return (
-    <div>
-      <audio ref={audioRef} controls>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px' }}>
+      <audio ref={audioRef} controls style={{ width: '100%', maxWidth: '400px' }}>
         <source src={src} type="audio/mp4" />
       </audio>
     </div>
