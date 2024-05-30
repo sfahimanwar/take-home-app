@@ -24,7 +24,7 @@ export default function TranscriptPage() {
   if (error) return <p>Error loading transcript</p>;
 
   return (
-    <div>
+    <>
       <Link href="/" style={{ position: 'fixed', left: '20px', top: '50px' }}>
         <ActionIcon
           variant="gradient"
@@ -42,6 +42,6 @@ export default function TranscriptPage() {
       <ScrollArea style={{ height: '60vh', border: '1px solid #ccc', borderRadius: '8px', maxWidth: '800px', margin: 'auto', padding: '20px' }} viewportRef={scrollViewportRef}>
         <Transcript transcript={transcript} currentTime={currentTime} scrollViewportRef={scrollViewportRef} />
       </ScrollArea>
-    </div>
+    </>
   );
 }
